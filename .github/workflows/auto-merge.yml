@@ -1,0 +1,34 @@
+name: Auto Merge on Push
+
+on:
+  push:
+    branches:
+      - dev1
+      - dev2
+      - dev3
+      - dev4
+      - dev5
+      - dev6
+      - dev7
+      - dev8
+      - dev9
+      - dev10
+      - dev11
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config user.name "AndreM102"
+          git config user.email "rich.alpha444@gmail.com"
+
+      - name: Merge into default branch
+        run: |
+          git checkout main  # Change this to your default branch
+          git merge ${{ github.ref }}  # Change this to the branch you are merging from
+          git push origin main  # Push the merged changes
